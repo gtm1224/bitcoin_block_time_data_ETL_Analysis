@@ -47,4 +47,4 @@ def ETL(h):
 if __name__ == '__main__':
     pd.DataFrame(columns=['height', 'time']).to_csv(dir + '/data/data_preprocessing_new.csv', index=False)
     with concurrent.futures.ThreadPoolExecutor() as executor:
-        executor.map(ETL,[h for h in range(720001)])
+        executor.map(ETL,[h for h in range(650000,720001)])

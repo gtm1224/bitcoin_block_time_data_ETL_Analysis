@@ -12,7 +12,7 @@ import concurrent.futures
 from datetime import datetime
 
 dir = Get_Current_dir()
-df = pd.read_csv(dir + '/data/data_preprocessing_copy.csv')
+df = pd.read_csv(dir + '/data/data_preprocessing_new_combine.csv')
 missing_h=find_missing_data(df)
 request_get_height_block_info = 'https://blockchain.info/block-height/%s?format=json'
 
@@ -25,14 +25,14 @@ def ETL(h):
             request = request_get_height_block_info % (h)
             content = Send_Get_Request_To_API(url=request)
             content = json.loads(content)
-            block_time =datetime.fromtimestamp(content['blocks'][0]['time'])
+            block_time =content['blocks'][0]['time']
             print('block_time:',block_time)
             df= pd.DataFrame({
                 'height':h,
                  'time': block_time,
             },index=[h])
             print(df)
-            df.to_csv(dir + '/data/data_preprocessing_copy.csv', index=False, mode='a',header=None)
+            df.to_csv(dir + '/data/data_preprocessing_new_combine.csv', index=False, mode='a',header=None)
             print("getting successfully")
             break
         except Exception as e:

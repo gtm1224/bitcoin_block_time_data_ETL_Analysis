@@ -29,7 +29,7 @@ def find_missing_data(df):
 
 if __name__ == '__main__':
     dir = Get_Current_dir()
-    df = pd.read_csv(dir + '/data/data_preprocessing.csv')
+    df = pd.read_csv(dir + '/data/data_preprocessing_new_combine.csv')
     find_missing_data(df)
 
 
